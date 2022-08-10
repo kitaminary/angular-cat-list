@@ -1,0 +1,9 @@
+<p class="cat__name"><b style="font-weight: 500">Breed: </b>{{ cat?.name }}</p>
+<img class="cat__photo" [src]="cat?.image?.url" [alt]="cat?.name" />
+<p class="cat__temperament">({{ cat?.temperament }})</p>
+<p class="cat__description">{{ cat?.description }}</p>
+<p class="cat__life-span"><b style="font-weight: 500">Life span: </b>{{ cat?.life_span }} y.o</p>
+<div class="cat__card__footer">
+  <p class="cat__origin"><b style="font-weight: 500">Origin: </b>{{ cat?.origin }}</p>
+  <a mat-mini-fab color="primary" class="cat__wiki" [href]="cat?.wikipedia_url" target="_blank"><mat-icon>public</mat-icon></a>
+</div>
