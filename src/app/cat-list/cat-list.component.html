@@ -1,30 +1,47 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="cat__form">
+  <mat-form-field appearance="outline">
+    <mat-label>Choose a count of photo</mat-label>
+    <mat-select
+      [(value)]="currentCount"
+      name="count"
+      id="count"
+      (change)="getCount($event.target)"
+    >
+      <mat-option [value]="1">1</mat-option>
+      <mat-option [value]="10" selected>10</mat-option>
+      <mat-option [value]="20">20</mat-option>
+      <mat-option [value]="40">40</mat-option>
+      <mat-option [value]="60">60</mat-option>
+      <mat-option [value]="80">80</mat-option>
+      <mat-option [value]="100">100</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Choose a breed</mat-label>
+    <mat-select
+      [(value)]="currentBreed"
+      name="Breed"
+      id="Breed"
+      (change)="getCatsBreed($event.target)"
+    >
+      <mat-option value="all" selected>All</mat-option>
+      <mat-option [value]="cat.id" *ngFor="let cat of breeds">
+        {{ cat.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-<mat-select name="count" id="count" (change)="getCount($event.target)" formControlName="currentCount">
-  <mat-option [value]="1">1</mat-option>
-  <mat-option [value]="10">10</mat-option>
-  <mat-option [value]="20">20</mat-option>
-  <mat-option [value]="40">40</mat-option>
-  <mat-option [value]="60">60</mat-option>
-  <mat-option [value]="80">80</mat-option>
-  <mat-option [value]="100">100</mat-option>
-  <mat-option [value]="120">120</mat-option>
-  <mat-option [value]="140">140</mat-option>
-  <mat-option [value]="160">160</mat-option>
-</mat-select>
-
-<mat-select name="Breed" id="Breed" (change)="getCatsBreed($event.target)" formControlName="currentBreed">
-  <mat-option [value]="" mat-selected>All</mat-option>
-  <mat-option [value]="cat.id" *ngFor="let cat of breeds">
-    {{ cat.name }}
-  </mat-option>
-</mat-select>
-
-<button type="submit">Submit</button>
+  <button mat-flat-button color="primary" type="submit">Submit</button>
 </form>
+
 <ul class="cat__list">
+  <div
+    *ngIf="(cats$ | async).length === 0"
+    class="spinner-border"
+    style="width: 4rem; height: 4rem; color: #64240c"
+    role="status"
+  ></div>
   <li class="cat__item" *ngFor="let cat of cats$ | async">
     <app-cat-card class="cat__card" [cat]="cat"></app-cat-card>
   </li>
 </ul>
-

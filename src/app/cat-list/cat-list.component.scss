@@ -48,4 +48,13 @@
       padding-left: 10px;
     }
   }
+
+  &__form {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: baseline;
+  }
 }

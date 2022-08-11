@@ -13,22 +13,21 @@ import { getCatsList } from '../store/selectors/cats.selectors';
 })
 export class CatListComponent implements OnInit {
   cats$ = this.store.select(getCatsList);
+  loader: boolean;
 
   breeds: Breed[];
-  limited$: number = 10;
+  myForm: FormGroup = new FormGroup({
+    currentBreed: new FormControl('all'),
+    currentCount: new FormControl(10),
+  });
 
-  myForm= this.FormBuilder.group({
-    currentBreed: '',
-    currentCount: '',
-  })
+  public currentBreed: string = 'all';
 
-  public currentBreed: string;
-  public currentCount: number;
+  public currentCount: number = 10;
 
   constructor(
     private store: Store<{ cats: Cat[]; count: number }>,
-    private catServise: CatService,
-    public FormBuilder: FormBuilder
+    private catServise: CatService
   ) {}
 
   getCatsBreed(event) {
@@ -40,10 +39,20 @@ export class CatListComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.cats$);
+    if (this.currentBreed === 'all') {
+      this.catServise.filterData(`${this.currentCount}`).subscribe({
+        next: (result: Cat[]) =>
+          this.store.dispatch(loadCats({ cats: result })),
+      });
+    }
+
     this.catServise.data(this.currentBreed, this.currentCount).subscribe({
       next: (result: Cat[]) => this.store.dispatch(loadCats({ cats: result })),
     });
 
+    this.currentBreed = 'all'
+    this.currentCount = 1;
     this.myForm.reset();
   }
 
