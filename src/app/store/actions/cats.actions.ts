@@ -2,9 +2,9 @@ import { createAction, props } from '@ngrx/store';
 import { Cat } from '../../../../types';
 
 export enum CatsActions {
-  GetCats = '[cats] Get Cats',
+  GetCats = '[cats] Set Cats',
+  setCount = '[count] Set Count',
 }
-
 
 export const loadCats = createAction(
   CatsActions.GetCats,

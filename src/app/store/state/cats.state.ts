@@ -1,4 +1,12 @@
 import { Cat } from 'types';
 
-export const initialState = [] as Cat[]
+
+export interface State {
+  cats: Cat[],
+}
+
+export const initialState = {
+  cats: [],
+}
+
 
