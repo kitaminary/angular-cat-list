@@ -1,6 +1,24 @@
 # AngularCatList
+[DEMO](https://kitaminary.github.io/angular-cat-list/)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.1.
+## Start
+
+1. npm install
+2. ng serve
+
+## Used
+
+1. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.1.
+2. Node version 16.16.0
+3. Npm verion 8.11.0
+4. SASS, SCSS
+5. JavaScript ES6
+6. TypeScript
+7. HTML5
+
+## Functionality
+
+Cat gallery with possible to choose count of photos and breeds
 
 ## Development server
 

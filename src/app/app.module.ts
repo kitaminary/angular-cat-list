@@ -38,7 +38,6 @@ import { MatTableModule } from '@angular/material/table';
     MatSortModule,
     MatTableModule,
     StoreModule.forRoot({ store: catsReducer }),
-
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
